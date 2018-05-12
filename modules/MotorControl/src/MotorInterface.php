@@ -1,10 +1,11 @@
-<?php
+<?php declare(strict_types=1);
+
 namespace IainFogg\MotorControl;
 
 interface MotorInterface
 {
-    public function setSpeed($direction, $speed);
-    public function stop();
-    public function getDirection();
-    public function getSpeed();
+    public function setSpeed(int $direction, int $speed): void;
+    public function stop(): void;
+    public function getDirection(): int;
+    public function getSpeed(): int;
 }

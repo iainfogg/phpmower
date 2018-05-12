@@ -2,6 +2,8 @@
 
 namespace IainFogg\MotorControl;
 
+use React\EventLoop\LoopInterface;
+
 class MowerController
 {
     /**
@@ -14,20 +16,37 @@ class MowerController
      */
     private $sensorController;
 
+    /**
+     * @var LoopInterface
+     */
+    private $loop;
+
     public function __construct(SteeringController $steeringController, SensorController $sensorController)
     {
         $this->steeringController = $steeringController;
         $this->sensorController = $sensorController;
+        $this->loop = \React\EventLoop\Factory::create();
     }
 
     public function executeLoop()
     {
-        $loop = \React\EventLoop\Factory::create();
+        $this->initialiseMower();
 
-        $loop->addPeriodicTimer(0.1, function () {
+        $this->loop->addPeriodicTimer(3, function () {
+            print_r($this->steeringController->getState());
             $this->sensorController->checkSensors();
         });
 
-        $loop->run();
+        $this->loop->run();
+    }
+
+    public function initialiseMower()
+    {
+        echo "Mower initialised\r\n";
+    }
+
+    public function turnAfterBumperHit()
+    {
+
     }
 }
