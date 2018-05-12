@@ -1,8 +1,7 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace IainFogg\MotorControl;
 
-use IainFogg\MotorControl\Event\FrontBumperHitEvent;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
@@ -12,19 +11,13 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class DriveCommand extends Command
 {
     /**
-     * @var SteeringController
+     * @var MowerController
      */
-    private $steeringController;
+    private $mowerController;
 
-    /**
-     * @var SensorController
-     */
-    private $sensorController;
-
-    public function __construct(SteeringController $steeringController, SensorController $sensorController)
+    public function __construct(MowerController $mowerController)
     {
-        $this->steeringController = $steeringController;
-        $this->sensorController = $sensorController;
+        $this->mowerController = $mowerController;
 
         parent::__construct();
     }
@@ -40,16 +33,7 @@ class DriveCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $controller = $this->steeringController;
-        $controller->moveForward(10);
-
-        $loop = \React\EventLoop\Factory::create();
-
-        $loop->addPeriodicTimer(0.1, function () {
-            $this->sensorController->checkSensors();
-        });
-
-        $loop->run();
+        $this->mowerController->executeLoop();
 
         $output->writeln('done');
     }
