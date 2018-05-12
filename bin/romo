@@ -1,0 +1,15 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+use IainFogg\MotorControl\DriveCommand;
+use Symfony\Component\Console\Application;
+
+require __DIR__."/../bootstrap.php";
+
+$application = new Application();
+
+$application = new Application();
+
+$application->add(new DriveCommand());
+
+$application->run();
