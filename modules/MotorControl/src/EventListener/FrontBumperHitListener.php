@@ -2,6 +2,7 @@
 
 namespace IainFogg\MotorControl\EventListener;
 
+use IainFogg\MotorControl\Event\FrontBumperHitEvent;
 use IainFogg\MotorControl\SteeringController;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -27,6 +28,6 @@ class FrontBumperHitListener implements EventSubscriberInterface
     public function onFrontBumperHitAction(FrontBumperHitEvent $event)
     {
         echo 'front bumper hit';
-        $this->moveBackward(100);
+        $this->steeringController->moveBackward(100);
     }
 }
