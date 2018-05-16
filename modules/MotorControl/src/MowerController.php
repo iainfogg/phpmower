@@ -2,6 +2,7 @@
 
 namespace IainFogg\MotorControl;
 
+use Calcinai\PHPi\Board;
 use React\EventLoop\LoopInterface;
 
 class MowerController
@@ -20,12 +21,21 @@ class MowerController
      * @var LoopInterface
      */
     private $loop;
+    /**
+     * @var Calcinai\PHPi\Board
+     */
+    private $board;
 
-    public function __construct(SteeringController $steeringController, SensorController $sensorController)
-    {
+    public function __construct(
+        SteeringController $steeringController,
+        SensorController $sensorController,
+        LoopInterface $loop,
+        Board $board
+    ) {
         $this->steeringController = $steeringController;
         $this->sensorController = $sensorController;
-        $this->loop = \React\EventLoop\Factory::create();
+        $this->loop = $loop;
+        $this->board = $board;
     }
 
     public function executeLoop()

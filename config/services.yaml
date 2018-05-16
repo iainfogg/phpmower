@@ -37,3 +37,14 @@ services:
     IainFogg\MotorControl\SensorController:
         arguments:
             $frontBumperSensor: '@IainFogg\MotorControl\BumperSensor\SimulatedBumperSensor'
+
+    IainFogg\MotorControl\MowerController:
+        arguments:
+            $loop: '@React\EventLoop\StreamSelectLoop'
+            $board: '@Calcinai\PHPi\Board\V3\BPlus'
+
+    React\EventLoop\StreamSelectLoop:
+
+    Calcinai\PHPi\Board\V3\BPlus:
+        arguments:
+            $loop: '@React\EventLoop\StreamSelectLoop'
