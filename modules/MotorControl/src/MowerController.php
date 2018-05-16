@@ -48,8 +48,13 @@ class MowerController
 //            $this->sensorController->checkSensors();
 //        });
 
-        $led = new LED($this->board->getPin(0));
-        $led->flash(5);
+        $led = new LED($this->board->getPin(18));
+        //$led->flash(5);
+        echo 'LED going on';
+        $led->on();
+        sleep(3);
+        echo 'LED going off';
+        $led->off();
 
         $this->loop->run();
     }
