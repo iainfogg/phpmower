@@ -3,6 +3,7 @@
 namespace IainFogg\MotorControl;
 
 use Calcinai\PHPi\Board;
+use Calcinai\PHPi\External\Generic\LED;
 use React\EventLoop\LoopInterface;
 
 class MowerController
@@ -42,10 +43,13 @@ class MowerController
     {
         $this->initialiseMower();
 
-        $this->loop->addPeriodicTimer(3, function () {
-            print_r($this->steeringController->getState());
-            $this->sensorController->checkSensors();
-        });
+//        $this->loop->addPeriodicTimer(3, function () {
+//            print_r($this->steeringController->getState());
+//            $this->sensorController->checkSensors();
+//        });
+
+        $led = new LED($this->board->getPin(0));
+        $led->flash(5);
 
         $this->loop->run();
     }
