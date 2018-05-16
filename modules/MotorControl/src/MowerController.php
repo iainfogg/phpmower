@@ -58,14 +58,21 @@ class MowerController
 //        $led->off();
 
         $led = new LED($this->board->getPin(18));
-        $motor = new HBridge($this->board->getPin(19), $this->board->getPin(19));
+        $motor = new HBridge($this->board->getPin(19), $this->board->getPin(26));
 
         $led->on();
+        sleep(2);
+	$led->off();
         $motor->forward();
         sleep(3);
+        $led->on();
+        sleep(2);
+	$led->off();
         $motor->reverse();
         sleep(3);
         $motor->stop();
+        $led->on();
+        sleep(2);
         $led->off();
 
         $this->loop->run();
