@@ -33,9 +33,10 @@ class SensorController
         }
     }
 
-    public function initiateBumperSensor()
+    public function initialiseBumperSensor(SteeringController $steeringController)
     {
-
+        // TODO not sure about this, feels all wrong, and also sensor->init is not in interface
+        $this->frontBumperSensor->initialise($this);
     }
 
     public static function factory(bool $useRealSensor, EventDispatcherInterface $dispatcher, Board $board = null)

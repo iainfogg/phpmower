@@ -56,6 +56,7 @@ class MowerController
 
     public function initialiseMower()
     {
+        $this->sensorController->initialiseBumperSensor($this->steeringController);
         echo "Mower initialised\r\n";
     }
 

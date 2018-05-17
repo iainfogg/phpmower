@@ -14,9 +14,13 @@ class BumperSensor implements BumperSensorInterface
      */
     private $button;
 
-    public function __construct(Button $button, SteeringController $steeringController)
+    public function __construct(Button $button)
     {
         $this->button = $button;
+    }
+
+    public function initialise(SteeringController $steeringController)
+    {
         $this->button->on('press', [$steeringController, 'toggleDirection']);
     }
 
