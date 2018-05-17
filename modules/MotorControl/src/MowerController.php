@@ -56,9 +56,9 @@ class MowerController
 //        $motor->stop();
 //        $led->off();
 
-        $this->steeringController->moveForward();
+        $this->steeringController->moveForward(1);
         sleep(3);
-        $this->steeringController->moveBackward();
+        $this->steeringController->moveBackward(1);
         sleep(3);
         $this->steeringController->stop();
 
