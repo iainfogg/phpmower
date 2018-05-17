@@ -44,35 +44,15 @@ class MowerController
     {
         $this->initialiseMower();
 
-//        $this->loop->addPeriodicTimer(3, function () {
-//            print_r($this->steeringController->getState());
-//            $this->sensorController->checkSensors();
-//        });
-
-        $led = new LED($this->board->getPin(18));
-//        //$led->flash(5);
-//        echo 'LED going on';
-//        $led->on();
-//        sleep(3);
-//        echo 'LED going off';
-//        $led->off();
-
         $led = new LED($this->board->getPin(18));
         $motor = new HBridge($this->board->getPin(19), $this->board->getPin(26));
 
         $led->on();
-        sleep(2);
-	$led->off();
         $motor->forward();
         sleep(3);
-        $led->on();
-        sleep(2);
-	$led->off();
         $motor->reverse();
         sleep(3);
         $motor->stop();
-        $led->on();
-        sleep(2);
         $led->off();
 
         $this->loop->run();
