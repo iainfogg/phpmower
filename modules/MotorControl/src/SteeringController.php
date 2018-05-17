@@ -73,7 +73,9 @@ class SteeringController
     public static function factory(bool $useRealMotor, Board $board = null)
     {
         if ($useRealMotor) {
-            return new self(new HBridge($board->getPin(19), $board->getPin(26)));
+            $leftMotor = new Motor(new HBridge($board->getPin(19), $board->getPin(26)));
+            $rightMotor = new SimulatedMotor();
+            return new self($leftMotor, $rightMotor);
         } else {
             return new self(new SimulatedMotor(), new SimulatedMotor());
         }
