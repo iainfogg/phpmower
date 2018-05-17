@@ -2,7 +2,11 @@
 
 namespace IainFogg\MotorControl;
 
+use Calcinai\PHPi\Board;
+use Calcinai\PHPi\External\Generic\Motor\HBridge;
+use Calcinai\PHPi\Pin;
 use IainFogg\MotorControl\Event\FrontBumperHitEvent;
+use IainFogg\MotorControl\Motor\SimulatedMotor;
 
 class SteeringController
 {
@@ -41,6 +45,12 @@ class SteeringController
         $this->mode = SteeringModeConsts::ROTATING_CLOCKWISE;
     }
 
+    public function stop()
+    {
+        $this->rightMotor->stop();
+        $this->leftMotor->stop();
+    }
+
     public function getState()
     {
         return new SteeringState($this->leftMotor, $this->rightMotor, $this->mode);
@@ -58,5 +68,14 @@ class SteeringController
         $rightMotorDirection = $direction == ControllerRotationConsts::ANTICLOCKWISE ? MotorDirectionConsts::FORWARD : MotorDirectionConsts::BACKWARD;
         $this->leftMotor->setSpeed($leftMotorDirection, $speed);
         $this->rightMotor->setSpeed($rightMotorDirection, $speed);
+    }
+
+    public static function factory(bool $useRealMotor, Board $board = null)
+    {
+        if ($useRealMotor) {
+            return new self(new HBridge($board->getPin(19), $board->getPin(26)));
+        } else {
+            return new self(new SimulatedMotor(), new SimulatedMotor());
+        }
     }
 }

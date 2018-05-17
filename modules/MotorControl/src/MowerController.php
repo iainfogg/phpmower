@@ -3,6 +3,7 @@
 namespace IainFogg\MotorControl;
 
 use Calcinai\PHPi\Board;
+use Calcinai\PHPi\External\Generic\Button;
 use Calcinai\PHPi\External\Generic\LED;
 use Calcinai\PHPi\External\Generic\Motor\HBridge;
 use React\EventLoop\LoopInterface;
@@ -44,16 +45,22 @@ class MowerController
     {
         $this->initialiseMower();
 
-        $led = new LED($this->board->getPin(18));
-        $motor = new HBridge($this->board->getPin(19), $this->board->getPin(26));
+//        $led = new LED($this->board->getPin(18));
+//        $motor = new HBridge($this->board->getPin(19), $this->board->getPin(26));
+//
+//        $led->on();
+//        $motor->forward();
+//        sleep(3);
+//        $motor->reverse();
+//        sleep(3);
+//        $motor->stop();
+//        $led->off();
 
-        $led->on();
-        $motor->forward();
+        $this->steeringController->moveForward();
         sleep(3);
-        $motor->reverse();
+        $this->steeringController->moveBackward();
         sleep(3);
-        $motor->stop();
-        $led->off();
+        $this->steeringController->stop();
 
         $this->loop->run();
     }
