@@ -42,7 +42,7 @@ class SensorController
     public static function factory(bool $useRealSensor, EventDispatcherInterface $dispatcher, Board $board = null)
     {
         if ($useRealSensor) {
-            $button = new Button($board->getPin(16));
+            $button = new Button($board->getPin(18));
             $frontSensor = new BumperSensor($button);
             return new self($frontSensor, $dispatcher);
         } else {
