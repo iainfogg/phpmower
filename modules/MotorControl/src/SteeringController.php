@@ -54,6 +54,8 @@ class SteeringController
 
     public function toggleDirection()
     {
+        echo 'toggleDirection';
+
         // TODO work out where this should go, currently just test code to try button
         if ($this->rightMotor->getDirection() === MotorDirectionConsts::FORWARD) {
             $this->rightMotor->setSpeed(MotorDirectionConsts::BACKWARD, 1);
