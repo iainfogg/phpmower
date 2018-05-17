@@ -6,6 +6,7 @@ use Calcinai\PHPi\Board;
 use Calcinai\PHPi\External\Generic\Motor\HBridge;
 use Calcinai\PHPi\Pin;
 use IainFogg\MotorControl\Event\FrontBumperHitEvent;
+use IainFogg\MotorControl\Motor\Motor;
 use IainFogg\MotorControl\Motor\SimulatedMotor;
 
 class SteeringController
