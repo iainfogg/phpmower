@@ -45,17 +45,6 @@ class MowerController
     {
         $this->initialiseMower();
 
-//        $led = new LED($this->board->getPin(18));
-//        $motor = new HBridge($this->board->getPin(19), $this->board->getPin(26));
-//
-//        $led->on();
-//        $motor->forward();
-//        sleep(3);
-//        $motor->reverse();
-//        sleep(3);
-//        $motor->stop();
-//        $led->off();
-
         $this->steeringController->moveForward(1);
         sleep(3);
         $this->steeringController->moveBackward(1);
