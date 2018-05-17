@@ -52,6 +52,23 @@ class SteeringController
         $this->leftMotor->stop();
     }
 
+    public function toggleDirection()
+    {
+        // TODO work out where this should go, currently just test code to try button
+        if ($this->rightMotor->getDirection() === MotorDirectionConsts::FORWARD) {
+            $this->rightMotor->setSpeed(MotorDirectionConsts::BACKWARD, 1);
+        } else {
+            $this->rightMotor->setSpeed(MotorDirectionConsts::FORWARD, 1);
+        }
+
+        if ($this->leftMotor->getDirection() === MotorDirectionConsts::FORWARD) {
+            $this->leftMotor->setSpeed(MotorDirectionConsts::BACKWARD, 1);
+        } else {
+            $this->leftMotor->setSpeed(MotorDirectionConsts::FORWARD, 1);
+        }
+
+    }
+
     public function getState()
     {
         return new SteeringState($this->leftMotor, $this->rightMotor, $this->mode);

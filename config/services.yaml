@@ -2,6 +2,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     useRealMotor: true
+    useRealSensor: true
 
 services:
     # default configuration for services in *this* file
@@ -38,8 +39,10 @@ services:
         arguments: ['%useRealMotor%', '@Calcinai\PHPi\Board\V3\BPlus']
 
     IainFogg\MotorControl\SensorController:
-        arguments:
-            $frontBumperSensor: '@IainFogg\MotorControl\BumperSensor\SimulatedBumperSensor'
+#        arguments:
+#            $frontBumperSensor: '@IainFogg\MotorControl\BumperSensor\SimulatedBumperSensor'
+        factory: ['IainFogg\MotorControl\SensorController', factory]
+        arguments: ['%useRealSensor%', '@Symfony\Component\EventDispatcher\EventDispatcherInterface', '@Calcinai\PHPi\Board\V3\BPlus']
 
     IainFogg\MotorControl\MowerController:
         arguments:
