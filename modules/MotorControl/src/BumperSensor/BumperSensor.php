@@ -21,6 +21,7 @@ class BumperSensor implements BumperSensorInterface
 
     public function initialise(SteeringController $steeringController)
     {
+        echo 'initialising button';
         $this->button->on('press', [$steeringController, 'toggleDirection']);
     }
 
