@@ -43,7 +43,7 @@ class MowerController
 
     public function executeLoop()
     {
-        $this->initialiseMower();
+//        $this->initialiseMower();
 
         $this->steeringController->moveForward(1);
         sleep(3);
