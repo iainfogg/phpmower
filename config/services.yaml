@@ -54,3 +54,7 @@ services:
     Calcinai\PHPi\Board\V3\BPlus:
         arguments:
             $loop: '@React\EventLoop\StreamSelectLoop'
+
+    Calcinai\PHPi\Board\V1\A:
+        arguments:
+            $loop: '@React\EventLoop\StreamSelectLoop'
