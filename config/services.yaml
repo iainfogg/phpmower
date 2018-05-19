@@ -47,7 +47,7 @@ services:
     IainFogg\MotorControl\MowerController:
         arguments:
             $loop: '@React\EventLoop\StreamSelectLoop'
-            $board: '@Calcinai\PHPi\Board\V3\BPlus'
+            $board: '@Calcinai\PHPi\Board\V1\A'
 
     React\EventLoop\StreamSelectLoop:
 
